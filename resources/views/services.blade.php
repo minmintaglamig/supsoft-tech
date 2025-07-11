@@ -6,9 +6,12 @@
 <section id="services" class="py-5">
     <div class="container text-center">
         <div class="mb-5" data-aos="zoom-in">
-            <h2 class="fw-bold text-warning">
-                <i class="bi bi-code-slash me-2"></i>SERVICES
-            </h2>
+            <div class="mb-5 text-center" data-aos="fade-down">
+                <img src="{{ asset('/images/logo.png') }}" alt="SupSoft Tech Logo" style="height: 100px;">
+                <h2 class="mt-3 fw-bold" style="color: #FFD700;">SupSoft Tech</h2>
+                <p class="fs-5 fst-italic text-white-50">“Empowering your digital world with innovative solutions.”</p>
+            </div>
+            <h4 class="mb-4 fw-bold" style="color: #FFD700;">Our Services</h4>
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
