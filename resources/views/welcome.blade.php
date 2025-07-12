@@ -3,13 +3,16 @@
 @section('title', 'Welcome')
 
 @section('content')
-<section class="text-center py-5" style="background: linear-gradient(to right, #0c0c1e, #1c1c3c); color: #fff;">
-    <div class="container" data-aos="fade-up">
+<section class="text-center d-flex flex-column justify-content-center align-items-center" 
+         style="min-height: 100vh; 
+                background: url('{{ asset('images/homepage-bg.png') }}') center center / cover no-repeat fixed; 
+                color: #fff;" 
+         data-aos="fade-up">
+    
+    <div class="px-3 text-white text-center">
         <h1 class="display-4 fw-bold mb-3">Welcome to SupSoft Tech</h1>
-        <p class="lead mb-4">
-            We build secure, smart, and scalable solutions for the modern world.
-        </p>
-        <div class="d-flex justify-content-center gap-3">
+        <p class="lead mb-4">We build secure, smart, and scalable solutions for the modern world.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
             <a href="{{ route('portfolio') }}" class="btn btn-outline-light px-4">Explore Our Work</a>
             <a href="{{ route('contact') }}" class="btn btn-primary px-4">Contact Us</a>
         </div>
