@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="min-vh-100 bg-light">
-        <x-navigation />
+        @include('components.navbar')
 
         @isset($header)
             <header class="bg-white shadow-sm">

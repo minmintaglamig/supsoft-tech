@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LinkedInController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 })->name('home');
 
 Route::view('/about', 'about')->name('about');

@@ -1,26 +1,41 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@extends('layouts.guest')
+
+@section('title', 'Confirm Password')
+
+@section('content')
+<h2 class="text-center mb-4">Confirm Password</h2>
+
+<p class="text-muted text-center mb-3">
+    This is a secure area. Please confirm your password to continue.
+</p>
+
+<form method="POST" action="{{ route('password.confirm') }}">
+    @csrf
+
+    <div class="form-floating mb-3 position-relative">
+        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+               name="password" required placeholder="Password">
+        <label for="password">Password</label>
+        <span class="position-absolute top-50 end-0 translate-middle-y me-3" onclick="togglePassword('password', 'toggleConfirmPass')" style="cursor: pointer;">
+            <i id="toggleConfirmPass" class="bi bi-eye-slash"></i>
+        </span>
+        @error('password')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+    </div>
+</form>
 
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+<script>
+    function togglePassword(id, iconId) {
+        const input = document.getElementById(id);
+        const icon = document.getElementById(iconId);
+        input.type = input.type === "password" ? "text" : "password";
+        icon.classList.toggle("bi-eye");
+        icon.classList.toggle("bi-eye-slash");
+    }
+</script>
+@endsection
