@@ -1,0 +1,999 @@
+/**
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# Font & Color Variables
+# Help: https://bootstrapmade.com/color-system/
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Nunito Sans",  sans-serif;
+  --nav-font: "Raleway",  sans-serif;
+}
+
+
+/* :root {
+  --background-color: #F5F5F5;      
+  --default-color: #333333;         
+  --heading-color: #222222;         
+  --accent-color: #8C7B6B;          
+  --surface-color: #E1DDD7;         
+  --contrast-color: #FFFFFF;        
+
+  --nav-color: #333333;             
+  --nav-hover-color: #8C7B6B;       
+  --nav-mobile-background-color: #E1DDD7; 
+  --nav-dropdown-background-color: #E1DDD7; 
+  --nav-dropdown-color: #333333;    
+  --nav-dropdown-hover-color: #8C7B6B; 
+}
+
+.light-background {
+  --background-color: #FFFFFF;
+  --surface-color: #F0EFEF;
+  --default-color: #4B4B4B;
+  --heading-color: #222222;
+}
+
+.dark-background {
+  --background-color: #333333;
+  --default-color: #E1DDD7;
+  --heading-color: #FFFFFF;
+  --surface-color: #8C7B6B;
+  --contrast-color: #FFFFFF;
+} 
+   */
+:root {
+  --background-color: #1E1E1E;         
+  --default-color: #CCCCCC;             
+  --heading-color: #F5F5F5;            
+  --accent-color: #A67C52;             
+  --surface-color: #2F2B27;             
+  --contrast-color: #FFFFFF;           
+
+  --nav-color: #CCCCCC;               
+  --nav-hover-color: #A67C52;          
+  --nav-mobile-background-color: #2F2B27;
+  --nav-dropdown-background-color: #2F2B27;
+  --nav-dropdown-color: #CCCCCC;       
+  --nav-dropdown-hover-color: #A67C52; 
+}
+
+.light-background {
+  --background-color: #2F2B27;
+  --surface-color: #1E1E1E;
+  --default-color: #ffffff;
+  --heading-color: #222222;
+}
+
+.dark-background {
+  --background-color: #1E1E1E;
+  --default-color: #CCCCCC;
+  --heading-color: #F5F5F5;
+  --surface-color: #2F2B27;
+  --contrast-color: #FFFFFF;
+}
+
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section
+--------------------------------------------------------------*/
+.portfolio .portfolio-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0;
+  margin: 0 0 40px;
+  list-style: none;
+}
+
+.portfolio .portfolio-filters li {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 25px;
+  cursor: pointer;
+  background: var(--surface-color);
+  color: var(--default-color);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.portfolio .portfolio-filters li i {
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+}
+
+.portfolio .portfolio-filters li:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+}
+
+.portfolio .portfolio-filters li:hover i {
+  transform: scale(1.1);
+}
+
+.portfolio .portfolio-filters li.filter-active {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+@media (max-width: 768px) {
+  .portfolio .portfolio-filters {
+    gap: 10px;
+  }
+
+  .portfolio .portfolio-filters li {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+
+.portfolio .portfolio-entry {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface-color);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.portfolio .portfolio-entry .entry-image {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.portfolio .portfolio-entry .entry-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .overlay-content {
+  width: 100%;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-meta {
+  color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-title {
+  color: var(--contrast-color);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links {
+  display: flex;
+  gap: 15px;
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-color);
+  color: var(--accent-color);
+  border-radius: 12px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  transform: translateY(-2px);
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.portfolio .portfolio-entry:hover .entry-image img {
+  transform: scale(1.05);
+}
+
+.portfolio .portfolio-entry:hover .entry-image .entry-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio .portfolio-entry:hover .entry-image .entry-overlay .overlay-content {
+  transform: translateY(0);
+}
+
+.portfolio .portfolio-entry:hover .entry-image .entry-overlay .entry-links a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .portfolio .portfolio-entry .entry-image .entry-overlay {
+    padding: 20px;
+  }
+
+  .portfolio .portfolio-entry .entry-image .entry-overlay .entry-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .portfolio .portfolio-entry .entry-image .entry-overlay .entry-links a {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+.portfolio .portfolio-item .entry-image {
+  aspect-ratio: 4/3;
+}
+
+@media (min-width: 1200px) {
+  .portfolio .portfolio-item .entry-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .portfolio .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .portfolio .row .portfolio-item {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio .row {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .portfolio .row .portfolio-item {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .portfolio .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .portfolio .row .portfolio-item {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .portfolio .entry-overlay {
+    padding: 25px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .portfolio .entry-overlay {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .portfolio .entry-overlay {
+    padding: 20px;
+  }
+}
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.contact .contact-info-section {
+  height: 100%;
+}
+
+.contact .contact-info-section .info-header {
+  margin-bottom: 40px;
+}
+
+.contact .contact-info-section .info-header h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--heading-color);
+  position: relative;
+  display: inline-block;
+}
+
+.contact .contact-info-section .info-header h3:after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
+  border-radius: 2px;
+}
+
+.contact .contact-info-section .info-header p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--default-color);
+  margin-bottom: 0;
+}
+
+.contact .contact-info-section .contact-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.contact .contact-info-section .info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+  background: linear-gradient(135deg, var(--surface-color), color-mix(in srgb, var(--surface-color), var(--accent-color) 3%));
+  border-radius: 15px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  transition: all 0.3s ease;
+}
+
+.contact .contact-info-section .info-item:hover {
+  transform: translateX(10px);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 60%);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 85%);
+}
+
+.contact .contact-info-section .info-item:hover .info-icon {
+  background-color: var(--accent-color);
+}
+
+.contact .contact-info-section .info-item:hover .info-icon i {
+  color: var(--contrast-color);
+}
+
+.contact .contact-info-section .info-item .info-icon {
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.contact .contact-info-section .info-item .info-icon i {
+  font-size: 24px;
+  color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.contact .contact-info-section .info-item .info-content {
+  flex: 1;
+}
+
+.contact .contact-info-section .info-item .info-content h5 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--heading-color);
+}
+
+.contact .contact-info-section .info-item .info-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--default-color);
+  margin-bottom: 0;
+}
+
+.contact .contact-info-section .social-contact {
+  padding: 30px;
+  background: var(--surface-color);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.contact .contact-info-section .social-contact h5 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+}
+
+.contact .contact-info-section .social-contact .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.contact .contact-info-section .social-contact .social-icons .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--surface-color);
+  color: var(--accent-color);
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+.contact .contact-info-section .social-contact .social-icons .social-icon:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 60%);
+}
+
+.contact .contact-form-wrapper {
+  background: linear-gradient(135deg, var(--surface-color), color-mix(in srgb, var(--surface-color), var(--background-color) 50%));
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px color-mix(in srgb, var(--default-color), transparent 90%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.contact .contact-form-wrapper .form-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.contact .contact-form-wrapper .form-header h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--heading-color);
+}
+
+.contact .contact-form-wrapper .form-header p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--default-color);
+  margin-bottom: 0;
+}
+
+.contact .contact-form-wrapper .php-email-form .form-label {
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.contact .contact-form-wrapper .php-email-form .form-control {
+  height: 50px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  background-color: var(--surface-color);
+  color: var(--default-color);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.contact .contact-form-wrapper .php-email-form .form-control:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 85%);
+  background-color: var(--surface-color);
+  outline: none;
+}
+
+.contact .contact-form-wrapper .php-email-form .form-control::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.contact .contact-form-wrapper .php-email-form .message-textarea {
+  height: 120px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #000 20%));
+  color: var(--contrast-color);
+  border: none;
+  padding: 18px 30px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--contrast-color), transparent 80%), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px color-mix(in srgb, var(--accent-color), transparent 70%);
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn:hover:before {
+  left: 100%;
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn:hover i {
+  transform: translateX(5px);
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.contact .contact-form-wrapper .php-email-form .submit-btn i {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 992px) {
+  .contact .contact-info-section {
+    margin-bottom: 40px;
+  }
+
+  .contact .contact-info-section .contact-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact .contact-info-section .contact-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact .contact-info-section .info-item {
+    padding: 20px;
+  }
+
+  .contact .contact-info-section .info-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .contact .contact-form-wrapper {
+    padding: 30px 25px;
+  }
+
+  .contact .contact-form-wrapper .form-header h3 {
+    font-size: 24px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Portfolio Details Section
+--------------------------------------------------------------*/
+.portfolio-details {
+  --section-spacing: 2.5rem;
+}
+
+.portfolio-details .portfolio-details-media {
+  position: relative;
+}
+
+.portfolio-details .portfolio-details-media .main-image {
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider {
+  position: relative;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-wrapper {
+  height: auto !important;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-slide img {
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  width: 100%;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev {
+  background-color: var(--contrast-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:after,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:after {
+  font-size: 16px;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover {
+  background-color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover:after,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover:after {
+  color: var(--contrast-color);
+}
+
+.portfolio-details .portfolio-details-media .thumbnail-grid img {
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.portfolio-details .portfolio-details-media .thumbnail-grid img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-details .portfolio-details-media .tech-stack-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-media .tech-stack-badges span {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: color-mix(in srgb, var(--heading-color), transparent 85%);
+  color: var(--heading-color);
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-media .tech-stack-badges span:hover {
+  background-color: color-mix(in srgb, var(--heading-color), transparent 70%);
+  transform: translateY(-2px);
+}
+
+.portfolio-details .portfolio-details-content {
+  padding: 0 0 0 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-details .portfolio-details-content .project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-meta .badge-wrapper .project-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.portfolio-details .portfolio-details-content .project-meta .date-client {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-meta .date-client .meta-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.portfolio-details .portfolio-details-content .project-meta .date-client .meta-item i {
+  margin-right: 6px;
+  color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-details-content .project-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--heading-color);
+}
+
+.portfolio-details .portfolio-details-content .project-website {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-website i {
+  font-size: 22px;
+  color: var(--accent-color);
+  margin-right: 8px;
+}
+
+.portfolio-details .portfolio-details-content .project-website a {
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.portfolio-details .portfolio-details-content .project-website a:hover {
+  letter-spacing: 0.5px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview {
+  margin-bottom: var(--section-spacing);
+}
+
+.portfolio-details .portfolio-details-content .project-overview .lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item {
+  border: none;
+  background: none;
+  margin-bottom: 10px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--heading-color);
+  background-color: color-mix(in srgb, var(--surface-color), transparent 70%);
+  border-radius: 8px !important;
+  box-shadow: none;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  background-color: var(--surface-color);
+  color: var(--accent-color);
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) i {
+  color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button::after {
+  background-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button i {
+  font-size: 1.1rem;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-body {
+  padding: 1rem;
+  background-color: var(--surface-color);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-body p {
+  margin-bottom: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  line-height: 1.6;
+}
+
+.portfolio-details .portfolio-details-content .project-features {
+  margin-bottom: var(--section-spacing);
+}
+
+.portfolio-details .portfolio-details-content .project-features h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+}
+
+.portfolio-details .portfolio-details-content .project-features h3 i {
+  margin-right: 10px;
+  color: var(--accent-color);
+  font-size: 1.1em;
+}
+
+.portfolio-details .portfolio-details-content .project-features .feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.portfolio-details .portfolio-details-content .project-features .feature-list li {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+}
+
+.portfolio-details .portfolio-details-content .project-features .feature-list li i {
+  color: var(--accent-color);
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-view-project {
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-view-project:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 15%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project {
+  padding: 12px 28px;
+  background-color: color-mix(in srgb, var(--heading-color), transparent 90%);
+  color: var(--heading-color);
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project i {
+  transition: transform 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project:hover {
+  background-color: color-mix(in srgb, var(--heading-color), transparent 80%);
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project:hover i {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1199.98px) {
+  .portfolio-details .portfolio-details-content {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .portfolio-details .portfolio-details-content {
+    padding: 2rem 0 0 0;
+  }
+
+  .portfolio-details .portfolio-details-content .cta-buttons {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .portfolio-details .project-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .portfolio-details .project-meta .date-client {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .portfolio-details .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .portfolio-details .cta-buttons a {
+    width: 100%;
+    text-align: center;
+  }
+}

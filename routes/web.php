@@ -37,3 +37,13 @@ Route::post('/contact', function (Request $request) {
     // You can add validation, mail, or DB logic here
     return back()->with('success', 'Your message has been sent!');
 })->name('contact.submit');
+
+Route::middleware([])->group(function () {
+
+    Route::prefix('portfolio')->name('portfolio.')->group(function () {
+         Route::post('/add', [ProfileController::class, 'store'])->name('store');
+        Route::get('/create', [ProfileController::class, 'create'])->name('create');
+    });
+});
+Route::get('/api/portfolio-images/{category?}', [ProfileController::class, 'getImages']);
+
