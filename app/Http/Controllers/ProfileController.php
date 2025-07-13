@@ -68,7 +68,7 @@ class ProfileController extends Controller
         $request->validate([
             'portfolio_category' => 'required|string|max:255',
             'image_name' => 'required|string|max:255',
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120', // max 5MB
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120', 
         ]);
 
         $user = User::find(Auth::id());
@@ -87,7 +87,7 @@ class ProfileController extends Controller
         return back()->with('error', 'No image file was uploaded.');
     }
 
-    public function getImages($category = null)
+        public function getImages($category = null)
     {
         $basePath = 'portfolio';
         $folders = $category && strtoupper($category) !== 'ALL'
@@ -109,5 +109,29 @@ class ProfileController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function deleteImage(Request $request)
+    {
+        $imageUrl = $request->input('imageUrl');
+        if (!$imageUrl) {
+            return response()->json(['success' => false, 'message' => 'No image URL provided']);
+        }
+        $parsedUrl = parse_url($imageUrl);
+        $path = ltrim($parsedUrl['path'], '/'); 
+
+        if (str_starts_with($path, 'storage/')) {
+            $relativePath = substr($path, strlen('storage/'));
+        } else {
+            return response()->json(['success' => false, 'message' => 'Invalid image path']);
+        }
+
+        if (Storage::disk('public')->exists($relativePath)) {
+            Storage::disk('public')->delete($relativePath);
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'File not found']);
     }
 }

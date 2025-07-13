@@ -48,7 +48,15 @@
 </head>
 
 <body id="page-top">
-    @include('components.navbar')
+    @php
+        $user = Auth::user();
+    @endphp
+
+    @if ($user->role === 'Admin')
+        @include('components.navbaradmin')
+    @elseif ($user->role == 'User')
+        @include('components.navbar')
+    @endif
 
     <main class="container py-5">
         @yield('content')
